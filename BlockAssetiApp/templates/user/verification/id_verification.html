@@ -1,0 +1,663 @@
+{% load static %} {% include 'user/dashboard/__header.html' %}
+<!DOCTYPE html>
+<html lang="en">
+  <he>
+    <meta charset="UTF-8" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <!-- Latest compiled and minified CSS -->
+    <!-- <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    /> -->
+    <title>Upload Image</title>
+     <!-- Fonts and icons -->
+     <script src="{% static 'user/dash/js/plugin/webfont/webfont.min.js' %}"></script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+     <!-- Sweet Alert -->
+     <script src="{% static 'user/dash/js/plugin/sweetalert/sweetalert.min.js' %} "></script>
+     <!-- CSS Files -->
+     <link
+       rel="stylesheet"
+       href="{% static 'user/dash/css/bootstrap.min.css' %}"
+     />
+     <link rel="stylesheet" href="{% static 'user/dash/css/fonts.min.css' %}" />
+     <link
+       rel="stylesheet"
+       href="{% static 'user/dash/css/atlantis.min.css' %}"
+     />
+     <link rel="stylesheet" href="{% static 'user/dash/css/customs.css' %}" />
+     <link rel="stylesheet" href="{% static 'user/dash/css/style.css' %}" />
+     <link
+       rel="stylesheet"
+       href="{% static 'user/dash/css/atlantis.min.css' %}"
+     />
+     <link
+       rel="stylesheet"
+       href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css"
+     />
+     <link
+       rel="stylesheet"
+       type="text/css"
+       href="https://cdn.datatables.net/v/bs4/dt-1.10.21/af-2.3.5/b-1.6.3/b-flash-1.6.3/b-html5-1.6.3/b-print-1.6.3/r-2.2.5/datatables.min.css"
+     />
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <link
+       href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css"
+       rel="stylesheet"
+     />
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+ 
+     <!-- Bootstrap Notify -->
+     <script src="{% static 'user/dash/js/plugin/bootstrap-notify/bootstrap-notify.min.js ' %}"></script>
+     <script src="{% static 'user/dash/js/plugin/sweetalert/sweetalert.min.js ' %}"></script>
+     <script
+       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.1/dist/alpine.min.js"
+       defer
+     ></script>
+     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.1/dist/chart.min.js"></script>
+ 
+     <!--PayPal-->
+     <script>
+       // Add your client ID and secret
+       var PAYPAL_CLIENT = "iidjdjdj";
+       var PAYPAL_SECRET = "jijdjkdkdk";
+ 
+       // Point your server to the PayPal API
+       var PAYPAL_ORDER_API = "https://api.paypal.com/v2/checkout/orders/";
+     </script>
+     <script src="https://www.paypal.com/sdk/js?client-id=iidjdjdj"></script>
+     <style>
+       [wire\:loading],
+       [wire\:loading\.delay],
+       [wire\:loading\.inline-block],
+       [wire\:loading\.inline],
+       [wire\:loading\.block],
+       [wire\:loading\.flex],
+       [wire\:loading\.table],
+       [wire\:loading\.grid],
+       [wire\:loading\.inline-flex] {
+         display: none;
+       }
+       [wire\:loading\.delay\.shortest],
+       [wire\:loading\.delay\.shorter],
+       [wire\:loading\.delay\.short],
+       [wire\:loading\.delay\.long],
+       [wire\:loading\.delay\.longer],
+       [wire\:loading\.delay\.longest] {
+         display: none;
+       }
+       [wire\:offline] {
+         display: none;
+       }
+       [wire\:dirty]:not(textarea):not(input):not(select) {
+         display: none;
+       }
+       input:-webkit-autofill,
+       select:-webkit-autofill,
+       textarea:-webkit-autofill {
+         animation-duration: 50000s;
+         animation-name: livewireautofill;
+       }
+       @keyframes livewireautofill {
+         from {
+         }
+       }
+       .personalized ul {
+    list-style-type: none; /* Remove default bullet point */
+    padding-left: 20px; /* Add padding to the list */
+  }
+   .personalized li:before {
+    content: "\2022"; /* Unicode character for bullet point */
+    color: rgb(255, 144, 104); /* Yellow color for the bullet point */
+    font-size: 20px; /* Adjust bullet point size */
+    margin-right: 10px; /* Add spacing between bullet point and text */
+  }
+     </style>
+ 
+   <script src="{% static 'user/temp/js/jquery-3.5.1.min.js' %}"></script>
+   <script src="{% static 'user/temp/js/bootstrap.bundle.min.js' %}"></script>
+ 
+   <!-- SLIDER -->
+   <script src="{% static 'user/temp/js/owl.carousel.min.js' %}"></script>
+   <script src="{% static 'user/temp/js/owl.init.js' %}"></script>
+   <!-- Icons -->
+   <script src="{% static 'user/temp/js/feather.min.js' %}"></script>
+   <script src="{% static 'user/temp/js/bundle.js' %}"></script>
+ 
+   <script src="{% static 'user/temp/js/app.js' %}"></script>
+   <script src="{% static 'user/temp/js/widget.js' %}"></script>
+   <script
+     src="/livewire/livewire.js?id=c69d0f2801c01fcf8166"
+     data-turbo-eval="false"
+     data-turbolinks-eval="false"
+   ></script>
+   <script data-turbo-eval="false" data-turbolinks-eval="false">
+     window.livewire = new Livewire();
+     window.Livewire = window.livewire;
+     window.livewire_app_url = "";
+     window.livewire_token = "AO8NrMoEnprEgjdVKa0My1LIGOAQjnihI7wHZNRX";
+     window.deferLoadingAlpine = function (callback) {
+       window.addEventListener("livewire:load", function () {
+         callback();
+       });
+     };
+     let started = false;
+     window.addEventListener("alpine:initializing", function () {
+       if (!started) {
+         window.livewire.start();
+         started = true;
+       }
+     });
+     document.addEventListener("DOMContentLoaded", function () {
+       if (!started) {
+         window.livewire.start();
+         started = true;
+       }
+     });
+   </script>
+   <!--   Core JS Files   -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ 
+   <script src="{% static 'user/dash/js/core/popper.min.js' %}"></script>
+   <script src="{% static 'user/dash/js/core/bootstrap.min.js ' %}"></script>
+   <!-- jQuery UI -->
+   <script src="{% static 'user/dash/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js' %}"></script>
+   <script src="{% static 'user/dash/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js' %}"></script>
+   <!-- jQuery Scrollbar -->
+   <script src="{% static 'user/dash/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js ' %}"></script>
+   <!-- jQuery Sparkline -->
+   <script src="{% static 'user/dash/js/plugin/jquery.sparkline/jquery.sparkline.min.js ' %}"></script>
+   <!-- Sweet Alert -->
+   <script src="{% static 'user/dash/js/plugin/sweetalert/sweetalert.min.js ' %}"></script>
+   <!-- Bootstrap Notify -->
+   <script src="{% static 'user/dash/js/plugin/bootstrap-notify/bootstrap-notify.min.js' %} "></script>
+ 
+   <script
+     type="text/javascript"
+     src="https://cdn.datatables.net/v/bs4/dt-1.10.21/af-2.3.5/b-1.6.3/b-flash-1.6.3/b-html5-1.6.3/b-print-1.6.3/r-2.2.5/datatables.min.js"
+   ></script>
+ 
+   <script src="{% static 'user/dash/js/atlantis.min.js' %}"></script>
+   <script src="{% static 'user/dash/js/atlantis.js' %}"></script>
+    <style>
+      .container {
+        max-width: 750px;
+        padding: 15px;
+      }
+
+      /* Custom bullet point style */
+     
+      /* input {
+        background-color: aquamarine;
+      } */
+      .custom-file-input-button {
+        display: inline-block;
+        padding: 8px 20px;
+        background-color: #28a745;
+        /* Green color for success */
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      /* Style the button on hover */
+      .custom-file-input-button:hover {
+        background-color: #218838;
+        /* Darker green color on hover */
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+		<script>
+		{var _smartsupp = _smartsupp || {};
+_smartsupp.key = 'c3590ebc17c3b414637e9b1c05d8bb018e46fe08';
+window.smartsupp||(function(d) {
+  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+  c.type='text/javascript';c.charset='utf-8';c.async=true;
+  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+})(document);
+
+ //Powered by AssetRadar Brokerage
+
+
+
+    (function () {
+        var options = {
+            whatsapp: "+13476296097", // WhatsApp number
+            call_to_action: "Message Us On Whatsapp...", // Call to action
+            position: "left", // Position may be 'right' or 'left'
+        };
+        var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;
+        var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+        s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+        var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+    })();}
+		</script>
+        <div>
+            <div class="wrapper">
+                        <div class="main-header">
+    <!-- Logo Header -->
+    <div class="logo-header" data-background-color="">
+        <a class="logo" href="/">
+                    <img src="{% static 'img/logo.png' %}" height="50" alt="" class="mr-2">
+        </a>
+        <button class="ml-auto navbar-toggler sidenav-toggler" type="button" data-toggle="collapse"
+            data-target="collapse" aria-expanded="false" aria-label="Toggle navigation" >
+            <span class="navbar-toggler-icon">
+                <i class="icon-menu"></i>
+            </span>
+        </button>
+        <button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
+        <div class="nav-toggle" data-background-color="dark">
+            <button class="btn btn-toggle toggle-sidebar">
+                <i class="icon-menu"></i>
+            </button>
+        </div>
+    </div>
+    <!-- End Logo Header -->
+
+    <!-- Navbar Header -->
+    <nav class="navbar navbar-header navbar-expand-lg" data-background-color="">
+
+        <div class="container-fluid">
+            <div class="text-center d-md-block d-none">
+                <a href="{{protocol}}://{{domain}}/deposit" class="pricing-action btn btn-warning btn-sm">Fund your Account</a>
+                &nbsp;
+                <a href="{{protocol}}://{{domain}}/withdrawal" class="pricing-action btn btn-danger btn-sm">Withdraw
+                    Funds</a>
+                
+            </div>
+            <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+
+                <li class="nav-item hidden-caret">
+                    <form action="javascript:void(0)" method="post" id="styleform" class="form-inline">
+
+                        
+                                                    
+                                                <input type="hidden" name="_token" value="AO8NrMoEnprEgjdVKa0My1LIGOAQjnihI7wHZNRX">
+                    
+                    
+                                            </form>
+                </li>
+                                    <li class="nav-item hidden-caret">
+                        <div id="google_translate_element"></div>
+                    </li>
+                
+                                
+                                <li class="nav-item dropdown hidden-caret" style="color: gray;">
+                    <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <i class="fas fa-user" style="color: grey;"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user animated fadeIn">
+                        <div class="dropdown-user-scroll scrollbar-outer">
+                            <li>
+                                <div class="user-box">
+                                    <div class="u-text">
+                                        <h4>{{ user.username }}</h4>
+                                        <p class="text-muted">{{ user.email }}</p><a
+                                            href="{{protocol}}://{{domain}}/account_setting"
+                                            class="btn btn-xs btn-secondary btn-sm">Account Settings</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{protocol}}://{{domain}}/deposit">Deposit</a>
+                                <a class="dropdown-item" href="{{protocol}}://{{domain}}/withdrawal">Withdraw</a>
+                                <a class="dropdown-item" href="{{protocol}}://{{domain}}/buy_plan">Buy Plan</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{protocol}}://{{domain}}/logout" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+                                <form id="logout-form" action="{{protocol}}://{{domain}}/logout" method="POST"
+                                    style="display: none;">
+                                    <input type="hidden" name="_token" value="AO8NrMoEnprEgjdVKa0My1LIGOAQjnihI7wHZNRX">
+                                </form>
+                            </li>
+                        </div>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+</div>
+<script type="text/javascript">
+    //create investment
+    $("#styleform").on('change', function() {
+        $.ajax({
+            url: "/frontend/user/dashboard/changetheme",
+            type: 'POST',
+            data: $("#styleform").serialize(),
+            success: function(data) {
+                location.reload(true);
+            },
+            error: function(data) {
+                console.log(data);
+            },
+
+        });
+    });
+</script>
+<!-- Smartsupp Live Chat script -->
+                    <script type="text/javascript">
+                    var _smartsupp = _smartsupp || {};
+                    _smartsupp.key = '0efd6ede9e87a3420bb72f29cccc5b2b27e832d3';
+                    window.smartsupp||(function(d) {
+                    var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+                    s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+                    c.type='text/javascript';c.charset='utf-8';c.async=true;
+                    c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+                    })(document);
+                    </script>
+                    <noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Blockchain Technology</a>
+                    </noscript>
+<!-- Smartsupp Live Chat script -->
+        <!-- Stored in resources/views/child.blade.php -->
+
+<!-- Sidebar -->
+
+<div class="sidebar sidebar-style-2" data-background-color="">
+    <div class="sidebar-wrapper scrollbar scrollbar-inner">
+        <div class="sidebar-content">
+            <div class="user">
+                <div class="info">
+                    <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+                        <span>
+                            {{ user.username }}
+                            
+                            <span class="caret"></span>
+                        </span>
+                    </a>
+                    <div class="clearfix"></div>
+                    <div class="collapse in" id="collapseExample">
+                        <ul class="nav">
+                            <li>
+                                <a href="{{protocol}}://{{domain}}/account_setting">
+                                    <span class="link-collapse">Account Settings</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <ul class="nav nav-primary">
+                <li class="nav-item ">
+                    <a href="{{protocol}}://{{domain}}/dashboard">
+                        <i class="fas fa-home"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li class="nav-item d-md-none ">
+                    <a href="{{protocol}}://{{domain}}/deposit">
+                        <i class="fa fa-download " aria-hidden="true"></i>
+                        <p>Fund your Account</p>
+                    </a>
+                </li>
+                <li class="nav-item d-md-none  ">
+                    <a href="{{protocol}}://{{domain}}/withdrawal">
+                        <i class="fa fa-arrow-alt-circle-up " aria-hidden="true"></i>
+                        <p>Withdraw Funds</p>
+                    </a>
+                </li>
+
+                <li class="nav-item ">
+                    <a href="{{protocol}}://{{domain}}/tradinghistory">
+                        <i class="fa fa-signal " aria-hidden="true"></i>
+                        <p>Profit Record</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a href="{{protocol}}://{{domain}}/accounthistory">
+                        <i class="fa fa-briefcase " aria-hidden="true"></i>
+                        <p>Transactions history</p>
+                    </a>
+                </li>
+                                    <li class="nav-item  ">
+                        <a href="{{protocol}}://{{domain}}/asset-balance">
+                            <i class="fa fa-coins" aria-hidden="true"></i>
+                            <p>Swap Crypto</p>
+                        </a>
+                    </li>
+                                                
+                                    <li class="nav-item ">
+                        <a href="{{protocol}}://{{domain}}/subtrade">
+                            <i class="fa fa-th" aria-hidden="true"></i>
+                            <p>Managed Accounts</p>
+                        </a>
+                    </li>
+                                
+                <li class="nav-item  ">
+                    <a data-toggle="collapse" href="#mpack">
+                        <i class="fas fa-cubes"></i>
+                        <p>Pool Trading</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="mpack">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{{protocol}}://{{domain}}/buy-plan">
+                                    <span class="sub-item">Trading Plans</span>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </li>  
+                <li class="nav-item ">
+                    <a href="{{protocol}}://{{domain}}/referuser">
+                        <i class="fa fa-recycle " aria-hidden="true"></i>
+                        <p>Refer Users</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a href="{{protocol}}://{{domain}}/support">
+                        <i class="fa fa-life-ring" aria-hidden="true"></i>
+                        <p>Help/Support</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+    <div class="container">
+        <br><br><br><br><br><br>
+      <h4 style="color: rgb(85, 85, 85); font-weight: 1000; font-size: 20px;">
+        <i class="fas fa-shield-check"></i>
+        Trading Account Verification
+      </h4>
+      <p class="content-desc" style="color: gray">
+        The documents you send must be clearly visible. This step is necessary
+        in accordance with the regulatory requirements.
+      </p>
+      <br />
+      <p class="content-desc" style="color: gray; font-weight: 1000">
+        The document should clearly show:
+      </p>
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          padding-left: 0px;
+          width: 350px;
+        "
+      >
+        <div class="personalized">
+          <ul>
+            <li style="color: gray">Your full name</li>
+            <li style="color: gray">Your photo</li>
+            <li style="color: gray">Date of birth</li>
+          </ul>
+        </div>
+        <div class="personalized">
+          <ul>
+            <li style="color: gray">Expiry date</li>
+            <li style="color: gray">Document number</li>
+            <li style="color: gray">Your signature</li>
+          </ul>
+        </div>
+      </div>
+      <br>
+      <h4 style="text-align: left; color: gray; font-weight: 900">
+        Front View
+      </h4>
+      <p style="color: gray">
+        <span
+          ><img
+            src="../../../static/img/id2.jpeg"
+            alt=""
+            style="height: 30px; width: 30px"
+        /></span>
+        Upload the front view of your ID Card.
+      </p>
+      <div class="well" data-bind="fileDrag: fileData">
+        <div class="form-group row">
+          <div class="col-md-6">
+            <div data-bind="ifnot: fileData().dataURL">
+              <img src="../../../static/img/id.png" />
+            </div>
+          </div>
+          <div
+            class="col-md-6"
+            style="
+              width: 50%;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+            "
+          >
+            <input
+              type="file"
+              data-bind="fileInput: fileData, customFileInput: {
+                    buttonClass: 'btn btn-success',
+                    fileNameClass: 'disabled form-control',
+                    onClear: onClear,
+                  }"
+              accept="image/*"
+              class="form-control form-control"
+              name="pics1"
+            />
+          </div>
+        </div>
+      </div>
+      <br />
+      <h4 style="text-align: left; color: gray; font-weight: 900">Back View</h4>
+      <p style="color: gray">
+        <span
+          ><img
+            src="../../../static/img/id2.jpeg"
+            alt=""
+            style="height: 30px; width: 30px"
+        /></span>
+        Upload the back view of your ID Card.
+      </p>
+      <div class="well" data-bind="fileDrag: multiFileData">
+        <div class="form-group row">
+          <div class="col-md-6">
+            <!-- ko foreach: {data: multiFileData().dataURLArray, as: 'dataURL'} -->
+
+            <!-- /ko -->
+            <div data-bind="ifnot: fileData().dataURL">
+              <img src="../../../static/img/id.png" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <input
+              type="file"
+              data-bind="fileInput: fileData, customFileInput: {
+                  buttonClass: 'btn btn-success',
+                  fileNameClass: 'disabled form-control',
+                  onClear: onClear,
+                }"
+              accept="image/*"
+              class="form-control"
+              name="pics2"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="custom-control custom-checkbox" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div style="height: 30px; width: 30px; margin-top: -5px;">
+            <input
+            type="checkbox"
+            
+            name="remember"
+            
+          />
+        </div>
+       
+        <label
+         style="padding-left: 5px; margin-top: -5px;"
+          
+          >I confirm that the information i provided are correct and are inline
+          with the <a href="#">Terms &amp; Conditions</a> guiding this trading
+          platform.</label
+        >
+      </div>
+      <div
+        style="
+          margin-top: 30px;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+        "
+      >
+        <button
+          class="btn my-2 btn-success btn-lg"
+          style="width: 100%"
+          data-processing="true"
+          type="submit"
+        >
+          Submit data
+        </button>
+      </div>
+    </div>
+</form>
+
+<footer class="footer  text-dark">
+<div class="container-fluid" style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
+    <div class="text-center row copyright" style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
+        <p style="text-align: center;">All Rights Reserved &copy; AssetRadar 2024</p> <br>
+                                         <div class="text-center">
+            <div id="google_translate_element"></div>
+        </div>
+                                   
+        
+    </div>
+</div>
+</footer>
+    <script>
+      $(function () {
+        var viewModel = {};
+        viewModel.fileData = ko.observable({
+          dataURL: ko.observable(),
+          // base64String: ko.observable(),
+        });
+        viewModel.multiFileData = ko.observable({
+          dataURLArray: ko.observableArray(),
+        });
+        viewModel.onClear = function (fileData) {
+          if (confirm("Are you sure?")) {
+            fileData.clear && fileData.clear();
+          }
+        };
+        viewModel.debug = function () {
+          window.viewModel = viewModel;
+          console.log(ko.toJSON(viewModel));
+          debugger;
+        };
+        ko.applyBindings(viewModel);
+      });
+    </script>
+  </body>
+</html>

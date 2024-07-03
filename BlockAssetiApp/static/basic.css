@@ -1,0 +1,49 @@
+
+body {
+    background-color: #000000;
+    color: white;
+}
+
+
+h1, h2,h3,  h4, h5 {
+    color: white;
+}
+
+main{
+    background-color: #000000;
+}
+
+.heading-box h2{
+    color:white;
+}
+
+.pricing-box-2 h2 {
+    color: white;
+}
+.pricing-box-2 {
+    background-color: #262626;
+    color:white;
+}
+.pricing-box-2 ul li{
+    color: #f7f7f7;
+}
+
+.h3-title {
+    color: #f7f7f7;
+}
+
+.blair{
+    background-color: #282828;
+    color:white;
+    padding: 15px 0;
+}
+
+.backlash {
+    background-color: #808080;
+}
+
+.fxt-content{
+    background-color: #000000;
+    color: white;
+    opacity:1;
+}

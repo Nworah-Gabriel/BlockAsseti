@@ -1,0 +1,831 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'user/dashboard/__header.html' %}
+<style>
+	/* Add styles for overlay */
+	body {
+
+}
+
+.container {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    display: none;
+    z-index: 1000;
+}
+
+.blur-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    z-index: 999;
+}
+
+.popup-content {
+    text-align: center;
+}
+
+.popup a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.popup a:hover {
+    background-color: #0056b3;
+}
+
+</style>
+<body data-background-color="dark">
+    <div id="app">
+	
+<!-- End Sidebar -->
+<div class="gtranslate_wrapper" id="overlay"></div>
+<script>window.gtranslateSettings = {"default_language":"en","native_language_names":true,"detect_browser_language":true,"wrapper_selector":".gtranslate_wrapper","flag_style":"3d","alt_flags":{"en":"usa"}}</script>
+<script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+        <div class="main-panel bg-white">
+			<div class="content bg-white">
+				<div class="page-inner">
+					<div class="mt-2 mb-4">
+						<h1 class="title1 text-dark">Fund Your Account</h1>
+					</div>
+					<div>
+    </div>					<div>
+    </div>					<div class="row">
+						<div class="col-md-12">
+							<div class="card bg-white">
+								<div class="card-body">
+									<div class="row">
+										<div class="col-md-8">
+											
+											<form action="javascript:;" method="POST" id="submitpaymentform">
+												<input type="hidden" name="_token" value="NtdyJA9v7PlnpKhPNMelAvvsSVWZzRoa6s2AxQnZ">												<div class="row">
+													
+													<div class="mb-4 col-md-12">
+														<input type="hidden" name="payment_method" id="paymethod">
+													</div>
+													<div class="mt-2 mb-1 col-md-12">
+														<h5 class="card-title text-dark">Choose Payment Method from the list below</h5>
+													</div>
+																										<div class="mb-2 col-md-6">
+														<a style="cursor: pointer;" data-method="Doge Coin" id="openPopup" class="text-decoration-none" onclick="checkpamethd(this.id)">
+															<div class="rounded shadow bg-white">
+																<div class="card-body">
+																	<span class="text-dark">
+																																				<img src="{% static 'img/dogecoin.png' %}" alt="" class="" style="width: 25px;">
+																																				  Doge Coin
+																	</span> 
+																</div>
+															</div>
+														</a>
+													</div>
+																										<div class="mb-2 col-md-6">
+														<a style="cursor: pointer;" data-method="USDT (TRC 20)" id="openPopup4"  class="text-decoration-none" onclick="checkpamethd(this.id)">
+															<div class="rounded shadow bg-white">
+																<div class="card-body">
+																	<span class="text-dark">
+																																				<img src="{% static 'img/usdt.png' %}" alt="" class="" style="width: 25px;">
+																																				  USDT (TRC 20)
+																	</span> 
+																</div>
+															</div>
+														</a>
+													</div>
+																										<div class="mb-2 col-md-6">
+														<a style="cursor: pointer;" data-method="Ethereum" id="openPopup2" class="text-decoration-none" onclick="checkpamethd(this.id)">
+															<div class="rounded shadow bg-white">
+																<div class="card-body">
+																	<span class="text-dark">
+																																				<img src="{% static 'img/ethereum.png' %}" alt="" class="" style="width: 25px;">
+																																				  Ethereum
+																	</span> 
+																</div>
+															</div>
+														</a>
+													</div>
+																										<div class="mb-2 col-md-6">
+														<a style="cursor: pointer;" data-method="Bitcoin" id="openPopup5" class="text-decoration-none" onclick="checkpamethd(this.id)">
+															<div class="rounded shadow bg-white">
+																<div class="card-body">
+																	<span class="text-dark">
+																																				<img src="{% static 'img/bitcoin.png' %}" alt="" class="" style="width: 25px;">
+																																				  Bitcoin
+																	</span> 
+																</div>
+															</div>
+														</a>
+													</div>
+													<div class="mb-2 col-md-6">
+														<a style="cursor: pointer;" data-method="Litecoin" id="openPopup6" class="text-decoration-none" onclick="checkpamethd(this.id)">
+															<div class="rounded shadow bg-white">
+																<div class="card-body">
+																	<span class="text-dark">
+																																				<img src="{% static 'img/Lite-Coin-PNG.png' %}" alt="" class="" style="width: 25px;">
+																																				  Litecoin
+																	</span> 
+																</div>
+															</div>
+														</a>
+													</div>
+																										<div class="mb-2 col-md-6">
+														<a style="cursor: pointer;" data-method="USDT (ERC 20)" id="openPopup3" class="text-decoration-none" onclick="checkpamethd(this.id)">
+															<div class="rounded shadow bg-white">
+																<div class="card-body">
+																	<span class="text-dark">
+																																				<img src="{% static 'img/money.png' %}" alt="" class="" style="width: 25px;">
+																																				  USDT (ERC 20)
+																	</span> 
+																</div>
+															</div>
+														</a>
+													</div>
+																																								<div class="mt-2 mb-1 col-md-12">	
+														</div>
+																										
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<script>
+				let paymethod = document.querySelector('#paymethod');
+				
+				function checkpamethd(id){
+					let url = "/frontend/user/dashboard/get-method" + '/' + id;
+					fetch(url)
+					.then(function(res){
+						return res.json();
+					})
+					.then(function (response){
+						paymethod.value = response;
+						$.notify({
+							// options
+							icon: 'flaticon-alarm-1',
+							title: 'Payment Method',
+							message: 'you have chosen to pay with ' + ' ' + response,
+						},{
+							// settings
+							type: 'success',
+							allow_dismiss: true,
+							newest_on_top: false,
+							placement: {
+								from: "top",
+								align: "right"
+							},
+							offset: 20,
+							spacing: 10,
+							z_index: 1031,
+							delay: 5000,
+							timer: 1000,
+							animate: {
+								enter: 'animated fadeInDown',
+								exit: 'animated fadeOutUp'
+							},
+		
+						});
+					})
+					.catch(function(err){
+						console.log(err);
+					});
+				}
+				$('#submitpaymentform').on('submit', function() {
+					//alert('love');
+					if (paymethod.value == "") {
+						$.notify({
+							// options
+							icon: 'flaticon-alarm-1',
+							title: 'Select Payment Method',
+							message: 'Please choose a payment method by clicking on it',
+						},{
+							// settings
+							type: 'danger',
+							allow_dismiss: true,
+							newest_on_top: false,
+							placement: {
+								from: "top",
+								align: "right"
+							},
+							offset: 20,
+							spacing: 10,
+							z_index: 1031,
+							delay: 5000,
+							timer: 1000,
+							animate: {
+								enter: 'animated fadeInDown',
+								exit: 'animated fadeOutUp'
+							},
+		
+						});
+					}else {
+						let makepayurl = "/frontend/user/dashboard/newdeposit"
+						//console.log(makepayurl);
+						document.getElementById("submitpaymentform").action = makepayurl;
+						
+					}
+					
+				});
+			</script>
+	                <footer class="footer bg-white text-dark">
+                    <div class="container-fluid">
+                        <div class="text-center row copyright text-align-center">
+                            <p>All Rights Reserved &copy; AssetRadar 2024</p> <br>
+                                                             <div class="text-center">
+                                <div id="google_translate_element"></div>
+                            </div>
+                                                       
+                            
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+	<div id="popup" class="popup" style="width: 1000px; height: 850px;" >
+		<div class="popup-content">
+			<span class="close" id="closePopup">&times;</span>
+			<div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+				<form method="POST" id="submitpaymentform" enctype="multipart/form-data">
+					{% csrf_token %}
+					<input type="hidden" name="_token" value="Dodge Coin">												<div class="row">
+						<div class="mb-4 col-md-12">
+							<h5 class="card-title text-dark">Enter Amount</h5><br>
+							<input class="form-control text-dark bg-white" placeholder="Enter Amount" min="100" type="number" name="amount" required>
+						</div>
+						<br>
+						<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center; width: 100%;">
+							<img src="{% static 'img/bar-codes/dodge.jpeg' %}" style="width: 300px; height: 300px;" />
+						</div>
+						<div class="mb-4 col-md-12">
+							<input type="hidden" name="payment_method" id="paymethod" value="Transfer">
+						</div>
+						<br><br>
+						</div>
+						<div class="mb-3 input-group">
+							<input type="text" class="form-control myInput readonly text-dark bg-light" value="D5AkLdApVsVKBmhp2XNbQjauWd1aZw2ZjF" id="myInput" readonly>
+							<div class="input-group-append">
+								<button class="btn btn-outline-secondary" onclick="myFunction()" type="button" id="button-addon2"><i class="fas fa-copy"></i></button>
+							</div>
+						</div>
+						<br>
+						<div class="card-body" style="width: 600px;">
+							<span class="text-dark" style="font-size: 30px; font-weight: 1000;">
+																										<img src="{% static 'img/dogecoin.png' %}" alt="" class="" style="width: 50px; height: 50px;">
+																										  Doge Coin
+							</span> 
+						</div><br>
+						<h4 style="text-align: left; color: rgb(66, 66, 66); font-weight: 900">
+							Payment proof:
+						  </h4>
+						  
+								<input
+								  type="file"
+								  data-bind="fileInput: fileData, customFileInput: {
+										buttonClass: 'btn btn-success',
+										fileNameClass: 'disabled form-control',
+										onClear: onClear,
+									  }"
+								  accept="image/*"
+								  class="form-control form-control"
+								  name="pics1"
+								required />
+							  
+						<br>
+					
+					<input type="submit" class="px-5 btn btn-primary btn-lg" value="Procced to Payment">
+					</form></div> 
+		</div>
+	</div>
+	<div id="popup2" class="popup" style="width: 1000px; height: 850px;">
+		<div class="popup-content">
+			<span class="close" id="closePopup2">&times;</span>
+			<div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+				<form method="POST" id="submitpaymentform" enctype="multipart/form-data">
+					{% csrf_token %}
+					<input type="hidden" name="_token" value="Ethereum">												<div class="row">
+						<div class="mb-4 col-md-12">
+							<h5 class="card-title text-dark">Enter Amount</h5><br>
+							<input class="form-control text-dark bg-white" placeholder="Enter Amount" min="100" type="number" name="amount" required>
+						</div>
+						<br>
+						<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center; width: 100%;">
+							<img src="{% static 'img/bar-codes/ETH.jpeg' %}" style="width: 300px; height: 300px;" />
+						</div><br><br>
+						<div class="mb-4 col-md-12">
+							<input type="hidden" name="payment_method" id="paymethod" value="Transfer">
+						</div>
+						</div>
+						<div class="mb-3 input-group">
+							<input type="text" class="form-control myInput readonly text-dark bg-light" value="0x93C2d7Ad7704693bE4DF20155e1D32447e9cDc42" id="myInput2" readonly>
+							<div class="input-group-append">
+								<button class="btn btn-outline-secondary" onclick="myFunction2()" type="button" id="button-addon2"><i class="fas fa-copy"></i></button>
+							</div>
+						</div>
+						<br>
+						<div class="card-body" style="width: 600px;">
+							<span class="text-dark" style="font-size: 30px; font-weight: 1000;">
+																										<img src="{% static 'img/ethereum.png' %}" alt="" class="" style="width: 50px; height: 50px;">
+																										Ethereum
+							</span> 
+						</div><br>
+						<h4 style="text-align: left; color: rgb(66, 66, 66); font-weight: 900">
+							Payment proof:
+						  </h4>
+						  
+								<input
+								  type="file"
+								  data-bind="fileInput: fileData, customFileInput: {
+										buttonClass: 'btn btn-success',
+										fileNameClass: 'disabled form-control',
+										onClear: onClear,
+									  }"
+								  accept="image/*"
+								  class="form-control form-control"
+								  name="pics1"
+								required />
+							  
+						<br>
+					
+					<input type="submit" class="px-5 btn btn-primary btn-lg" value="Procced to Payment">
+					</form></div> 
+		</div>
+	</div>
+	<div id="popup3" class="popup" style="height: 850px; width: 1000px;" >
+		<div class="popup-content">
+			<span class="close" id="closePopup3">&times;</span>
+			<div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+				<form method="POST" id="submitpaymentform" enctype="multipart/form-data">
+					{% csrf_token %}
+					<input type="hidden" name="_token" value="USDT (ERC 20)">												<div class="row">
+						<div class="mb-4 col-md-12">
+							<h5 class="card-title text-dark">Enter Amount</h5><br>
+							<input class="form-control text-dark bg-white" placeholder="Enter Amount" min="100" type="number" name="amount" required>
+						</div>
+						<br>
+						<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center; width: 100%;">
+							<img src="{% static 'img/bar-codes/USDTerc20.jpeg' %}" style="height: 300px; width: 300px;"/>
+						</div>
+						<div class="mb-4 col-md-12">
+							<input type="hidden" name="payment_method" id="paymethod" value="Transfer">
+						</div>
+						</div>
+						<div class="mb-3 input-group">
+							<input type="text" class="form-control myInput readonly text-dark bg-light" value="0x93C2d7Ad7704693bE4DF20155e1D32447e9cDc42" id="myInput3" readonly>
+							
+							<div class="input-group-append">
+								<button class="btn btn-outline-secondary" onclick="myFunction3()" type="button" id="button-addon2"><i class="fas fa-copy"></i></button>
+							</div>
+						</div>
+						<br>
+
+						
+						<br>
+						<div class="card-body" style="width: 600px;">
+							<span class="text-dark" style="font-size: 30px; font-weight: 1000;">
+																										<img src="{% static 'img/money.png' %}" alt="" class="" style="width: 50px; height: 50px;">
+																										USDT (ERC 20)
+							</span> 
+						</div>
+						<h4 style="text-align: left; color: rgb(66, 66, 66); font-weight: 900">
+							Payment proof:
+						  </h4>
+						  
+								<input
+								  type="file"
+								  data-bind="fileInput: fileData, customFileInput: {
+										buttonClass: 'btn btn-success',
+										fileNameClass: 'disabled form-control',
+										onClear: onClear,
+									  }"
+								  accept="image/*"
+								  class="form-control form-control"
+								  name="pics1"
+								required />
+							  
+						<br>
+					
+					<input type="submit" class="px-5 btn btn-primary btn-lg" value="Procced to Payment">
+					</form></div> 
+		</div>
+	</div>
+	<div id="popup4" class="popup" style="height: 850px; width: 1000px;">
+		<div class="popup-content">
+			<span class="close" id="closePopup4">&times;</span>
+			<div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+				<form method="POST" id="submitpaymentform" enctype="multipart/form-data">
+					{% csrf_token %}
+					<input type="hidden" name="_token" value="USDT (TRC 20)">												<div class="row">
+						<div class="mb-4 col-md-12">
+							<h5 class="card-title text-dark">Enter Amount</h5><br>
+							<input class="form-control text-dark bg-white" placeholder="Enter Amount" min="100" type="number" name="amount" required>
+						</div>
+						<br>
+						<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center; width: 100%;">
+							<img src="{% static 'img/bar-codes/USDTtrc20.jpeg' %}" style="height: 300PX; width: 300px;"/>
+						</div>
+						<div class="mb-4 col-md-12">
+							<input type="hidden" name="payment_method" id="paymethod" value="Transfer">
+						</div>
+						</div>
+						
+						<div class="mb-3 input-group">
+							<input type="text" class="form-control myInput readonly text-dark bg-light" value="TFnV775zANKDJYBhqPNQs3vd2xvDUL9a5c" id="myInput4" readonly>
+							<div class="input-group-append">
+								<button class="btn btn-outline-secondary" onclick="myFunction4()" type="button" id="button-addon2"><i class="fas fa-copy"></i></button>
+							</div>
+						</div>
+
+						
+						<br>
+						<div class="card-body" style="width: 600px;">
+							<span class="text-dark" style="font-size: 30px; font-weight: 1000;">
+																										<img src="{% static 'img/usdt.png' %}" alt="" class="" style="width: 50px; height: 50px;">
+																										USDT (TRC 20)
+							</span> 
+						</div><br>
+						<h4 style="text-align: left; color: rgb(66, 66, 66); font-weight: 900">
+							Payment proof:
+						  </h4>
+						  
+								<input
+								  type="file"
+								  data-bind="fileInput: fileData, customFileInput: {
+										buttonClass: 'btn btn-success',
+										fileNameClass: 'disabled form-control',
+										onClear: onClear,
+									  }"
+								  accept="image/*"
+								  class="form-control form-control"
+								  name="pics1"
+								required />
+							  
+						<br>
+					
+					<input type="submit" class="px-5 btn btn-primary btn-lg" value="Procced to Payment">
+					</form></div> 
+		</div> 
+	</div>
+	<div id="popup5" class="popup" style="height: 850px; width: 1000px;">
+		<div class="popup-content">
+			<span class="close" id="closePopup5">&times;</span>
+			<div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+				<form method="POST" id="submitpaymentform" enctype="multipart/form-data">
+					{% csrf_token %}
+					<input type="hidden" name="_token" value="Bitcoin">												<div class="row">
+						<div class="mb-4 col-md-12">
+							<h5 class="card-title text-dark">Enter Amount</h5><br>
+							<input class="form-control text-dark bg-white" placeholder="Enter Amount" min="100" type="number" name="amount" required>
+						</div>
+						<br>
+						<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center; width: 100%;">
+							<img src="{% static 'img/bar-codes/btc.jpeg' %}" style="height: 300px; width: 300px;"/>
+						</div>
+						<div class="mb-4 col-md-12">
+							<input type="hidden" name="payment_method" id="paymethod" value="Transfer">
+						</div>
+						</div>
+						<div class="mb-3 input-group">
+							<input type="text" class="form-control myInput readonly text-dark bg-light" value="bc1qx7x8cc82c7hpp5jdyhm602ff36jnn49uresu0a" id="myInput5" readonly>
+							<div class="input-group-append">
+								<button class="btn btn-outline-secondary" onclick="myFunction5()" type="button" id="button-addon2"><i class="fas fa-copy"></i></button>
+							</div>
+						</div>
+						<br>
+						<div class="card-body" style="width: 600px;">
+							<span class="text-dark" style="font-size: 30px; font-weight: 1000;">
+																										<img src="{% static 'img/bitcoin.png' %}" alt="" class="" style="width: 50px; height: 50px;">
+																										Bitcoin
+							</span> 
+						</div>
+						<h4 style="text-align: left; color: rgb(66, 66, 66); font-weight: 900">
+							Payment proof:
+						  </h4>
+						  
+								<input
+								  type="file"
+								  data-bind="fileInput: fileData, customFileInput: {
+										buttonClass: 'btn btn-success',
+										fileNameClass: 'disabled form-control',
+										onClear: onClear,
+									  }"
+								  accept="image/*"
+								  class="form-control form-control"
+								  name="pics1"
+								required />
+							  
+						<br>
+						<br>
+					<input type="submit" class="px-5 btn btn-primary btn-lg" value="Procced to Payment">
+					</form></div> 
+		</div>
+	</div>
+	<div id="popup6" class="popup" style="height: 850px; width: 1000px;">
+		<div class="popup-content">
+			<span class="close" id="closePopup6" 	style="width: 50px;">&times;</span>
+			<div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+				<form method="POST" id="submitpaymentform" enctype="multipart/form-data">
+					{% csrf_token %}
+					<input type="hidden" name="_token" value="Litecoin">												<div class="row">
+						<div class="mb-4 col-md-12">
+							<h5 class="card-title text-dark">Enter Amount</h5><br>
+							<input class="form-control text-dark bg-white" placeholder="Enter Amount" min="100" type="number" name="amount" required>
+						</div>
+						<br>
+						<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center; width: 100%;">
+							<img src="{% static 'img/bar-codes/ltc.jpeg' %}" style="height: 300px; width: 300px;"/>
+						</div>
+						<div class="mb-4 col-md-12">
+							<input type="hidden" name="payment_method" id="paymethod" value="Transfer">
+						</div>
+						</div>
+						<div class="mb-3 input-group">
+							<input type="text" class="form-control myInput readonly text-dark bg-light" value="ltc1qyxf48d6v7dtcpqq3vyht9qwmjs766gj4zc5v3s" id="myInput6" readonly>
+							<div class="input-group-append">
+								<button class="btn btn-outline-secondary" onclick="myFunction6()" type="button" id="button-addon2"><i class="fas fa-copy"></i></button>
+							</div>
+						</div>
+						<br>
+						<div class="card-body" style="width: 600px;">
+							<span class="text-dark" style="font-size: 30px; font-weight: 1000;">
+																										<img src="{% static 'img/Lite-Coin-PNG.png' %}" alt="" class="" style="width: 50px; height: 50px;">
+																										Lite Coin
+							</span> 
+						</div>
+						<h4 style="text-align: left; color: rgb(66, 66, 66); font-weight: 900">
+							Payment proof:
+						  </h4>
+						  
+								<input
+								  type="file"
+								  data-bind="fileInput: fileData, customFileInput: {
+										buttonClass: 'btn btn-success',
+										fileNameClass: 'disabled form-control',
+										onClear: onClear,
+									  }"
+								  accept="image/*"
+								  class="form-control form-control"
+								  name="pics1"
+								required />
+							  
+						<br>
+						<br>
+					<input type="submit" class="px-5 btn btn-primary btn-lg" value="Procced to Payment">
+					</form></div> 
+		</div>
+	</div>
+	<script>
+		function myFunction() {
+			/* Get the text field */
+			var copyText = document.getElementById("myInput");
+			/* Select the text field */
+			copyText.select();
+			copyText.setSelectionRange(0, 99999); /* For mobile devices */
+			/* Copy the text inside the text field */
+			document.execCommand("copy");
+			/* Alert the copied text */
+			//alert("Copied the text: " + copyText.value);
+			swal("Copied", copyText.value, "success");
+			}
+	</script>
+	<script>
+		function myFunction2() {
+			/* Get the text field */
+			var copyText = document.getElementById("myInput2");
+			/* Select the text field */
+			copyText.select();
+			copyText.setSelectionRange(0, 99999); /* For mobile devices */
+			/* Copy the text inside the text field */
+			document.execCommand("copy");
+			/* Alert the copied text */
+			//alert("Copied the text: " + copyText.value);
+			swal("Copied", copyText.value, "success");
+			}
+	</script>
+	<script>
+		function myFunction3() {
+			/* Get the text field */
+			var copyText = document.getElementById("myInput3");
+			/* Select the text field */
+			copyText.select();
+			copyText.setSelectionRange(0, 99999); /* For mobile devices */
+			/* Copy the text inside the text field */
+			document.execCommand("copy");
+			/* Alert the copied text */
+			//alert("Copied the text: " + copyText.value);
+			swal("Copied", copyText.value, "success");
+			}
+	</script>
+		<script>
+			function myFunction4() {
+				/* Get the text field */
+				var copyText = document.getElementById("myInput4");
+				/* Select the text field */
+				copyText.select();
+				copyText.setSelectionRange(0, 99999); /* For mobile devices */
+				/* Copy the text inside the text field */
+				document.execCommand("copy");
+				/* Alert the copied text */
+				//alert("Copied the text: " + copyText.value);
+				swal("Copied", copyText.value, "success");
+				}
+		</script>
+		<script>
+			function myFunction5() {
+				/* Get the text field */
+				var copyText = document.getElementById("myInput5");
+				/* Select the text field */
+				copyText.select();
+				copyText.setSelectionRange(0, 99999); /* For mobile devices */
+				/* Copy the text inside the text field */
+				document.execCommand("copy");
+				/* Alert the copied text */
+				//alert("Copied the text: " + copyText.value);
+				swal("Copied", copyText.value, "success");
+				}
+			</script>
+			<script>
+				function myFunction6() {
+					/* Get the text field */
+					var copyText = document.getElementById("myInput6");
+					/* Select the text field */
+					copyText.select();
+					copyText.setSelectionRange(0, 99999); /* For mobile devices */
+					/* Copy the text inside the text field */
+					document.execCommand("copy");
+					/* Alert the copied text */
+					//alert("Copied the text: " + copyText.value);
+					swal("Copied", copyText.value, "success");
+					}
+				</script>
+ 
+    <script src="/livewire/livewire.js?id=c69d0f2801c01fcf8166" data-turbo-eval="false" data-turbolinks-eval="false" ></script><script data-turbo-eval="false" data-turbolinks-eval="false" >window.livewire = new Livewire();window.Livewire = window.livewire;window.livewire_app_url = '';window.livewire_token = 'NtdyJA9v7PlnpKhPNMelAvvsSVWZzRoa6s2AxQnZ';window.deferLoadingAlpine = function (callback) {window.addEventListener('livewire:load', function () {callback();});};let started = false;window.addEventListener('alpine:initializing', function () {if (! started) {window.livewire.start();started = true;}});document.addEventListener("DOMContentLoaded", function () {if (! started) {window.livewire.start();started = true;}});</script>
+            <!--   Core JS Files   -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        
+        <script src="{% static 'user/dash/js/core/popper.min.js' %}"></script>
+        <script src="{% static 'user/dash/js/core/bootstrap.min.js ' %}"></script>
+        <!-- jQuery UI -->
+        <script src="{% static 'user/dash/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js' %}"></script>
+        <script src="{% static 'user/dash/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js' %}"></script>
+        <!-- jQuery Scrollbar -->
+        <script src="{% static 'user/dash/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js' %}"></script>
+        <!-- jQuery Sparkline -->
+        <script src="{% static 'user/dash/js/plugin/jquery.sparkline/jquery.sparkline.min.js' %}"></script>
+        <!-- Sweet Alert -->
+        <script src="{% static 'user/dash/js/plugin/sweetalert/sweetalert.min.js' %}"></script>
+        <!-- Bootstrap Notify -->
+        <script src="{% static 'user/dash/js/plugin/bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+
+        <script type="text/javascript"
+                src="https://cdn.datatables.net/v/bs4/dt-1.10.21/af-2.3.5/b-1.6.3/b-flash-1.6.3/b-html5-1.6.3/b-print-1.6.3/r-2.2.5/datatables.min.js">
+        </script>
+
+        <script src="{% static 'user/dash/js/atlantis.min.js' %}"></script>
+        <script src="{% static 'user/dash/js/atlantis.js' %}"></script>
+
+
+
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+        <script src="{% static 'user/dash/js/customs.js' %}"></script>
+		<script>
+			$(document).ready(function() {
+				$(".dataTables_length select").addClass("bg-white text-dark");
+				$(".dataTables_filter input").addClass("bg-white text-dark");
+				$(".dataTables_length select").addClass("bg-white text-dark");
+    			$(".dataTables_filter input").addClass("bg-white text-dark");
+			});
+		</script>
+        <!-- Smartsupp Live Chat script -->
+<script type="text/javascript">
+var _smartsupp = _smartsupp || {};
+_smartsupp.key = 'a14a2a6243b5c685bbb40ca3828b00d01200ddce';
+window.smartsupp||(function(d) {
+  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+  c.type='text/javascript';c.charset='utf-8';c.async=true;
+  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+})(document);
+</script>
+
+<!-- POPUP FOR DODGE COIN -->
+<script type="text/javascript">
+
+document.getElementById('openPopup').addEventListener('click', function() {
+    document.getElementById('popup').style.display = 'block';
+    document.body.classList.add('blur-background');
+});
+
+document.getElementById('closePopup').addEventListener('click', function() {
+    document.getElementById('popup').style.display = 'none';
+    document.body.classList.remove('blur-background');
+});
+</script>
+
+<!-- POPUP FOR LITE COIN -->
+<script type="text/javascript">
+
+	document.getElementById('openPopup6').addEventListener('click', function() {
+		document.getElementById('popup6').style.display = 'block';
+		document.body.classList.add('blur-background');
+	});
+	
+	document.getElementById('closePopup6').addEventListener('click', function() {
+		document.getElementById('popup6').style.display = 'none';
+		document.body.classList.remove('blur-background');
+	});
+	</script>
+
+<!-- POPUP FOR ETHEREUM -->
+<script type="text/javascript">
+
+	document.getElementById('openPopup2').addEventListener('click', function() {
+		document.getElementById('popup2').style.display = 'block';
+		document.body.classList.add('blur-background');
+	});
+	
+	document.getElementById('closePopup2').addEventListener('click', function() {
+		document.getElementById('popup2').style.display = 'none';
+		document.body.classList.remove('blur-background');
+	});
+	</script>
+
+<!-- POPUP FOR USDT (TRC 20) -->
+<script type="text/javascript">
+
+	document.getElementById('openPopup3').addEventListener('click', function() {
+		document.getElementById('popup3').style.display = 'block';
+		document.body.classList.add('blur-background');
+	});
+	
+	document.getElementById('closePopup3').addEventListener('click', function() {
+		document.getElementById('popup3').style.display = 'none';
+		document.body.classList.remove('blur-background');
+	});
+	</script>
+<!-- POPUP FOR BITCOIN -->
+<script type="text/javascript">
+
+	document.getElementById('openPopup5').addEventListener('click', function() {
+		document.getElementById('popup5').style.display = 'block';
+		document.body.classList.add('blur-background');
+	});
+	
+	document.getElementById('closePopup5').addEventListener('click', function() {
+		document.getElementById('popup5').style.display = 'none';
+		document.body.classList.remove('blur-background');
+	});
+	</script>
+	<!-- POPUP FOR USDT (ERC 20) -->
+<script type="text/javascript">
+
+	document.getElementById('openPopup4').addEventListener('click', function() {
+		document.getElementById('popup4').style.display = 'block';
+		document.body.classList.add('blur-background');
+	});
+	
+	document.getElementById('closePopup4').addEventListener('click', function() {
+		document.getElementById('popup4').style.display = 'none';
+		document.body.classList.remove('blur-background');
+	});
+	</script>
+<noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
+<!--End Smartsupp-->
+</body>
+
+</html>

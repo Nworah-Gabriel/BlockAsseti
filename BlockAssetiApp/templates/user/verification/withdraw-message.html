@@ -1,0 +1,210 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+        <meta charset="utf-8">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+        <meta name="csrf-token" content="Gd6ioONXk7nO9B5mVDkm9bqOXmvKABHVwjt1arzP">
+        <title>AssetRadar | Email Verification</title>
+        
+        
+        <link rel="icon" href="{{ image_url }}" type="image/png"/>
+                   
+            <link href="{% static 'user/temp/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+            <!-- Icons -->
+            <link href="{% static 'user/temp/css/materialdesignicons.min.css' %}" rel="stylesheet" type="text/css" />
+        
+            <link rel="stylesheet" href="{% static 'user/temp/css/line.css' %}">
+            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+            <!-- Main Css -->
+            <link href="{% static 'user/temp/css/style.css' %}" rel="stylesheet" type="text/css" />
+            <link href="{% static 'user/temp/css/colors/default.css' %}" rel="stylesheet">
+            
+            
+              <!-- Login css -->
+            
+             <link href="{% static 'user/temp/css/login/style-2.css' %}" rel="stylesheet" type="text/css" />
+             
+              <link href="{% static 'user/temp/css/login/responsive.css' %}" rel="stylesheet" type="text/css" />
+              
+               <link href="{% static 'user/temp/css/login/owl.theme.css' %}" rel="stylesheet" type="text/css" />
+               
+                <link href="{% static 'user/temp/css/login/animate.css' %}" rel="stylesheet" type="text/css" />
+                
+                <link href="{% static 'user/temp/css/login/font-awesome.min-2.css' %}" rel="stylesheet" type="text/css" />
+                
+                <link href="{% static 'user/temp/css/login/images/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+                
+                <link href="{% static 'user/temp/css/login/themify-icons.css' %}" rel="stylesheet" type="text/css" />
+                
+                <link href="{% static 'user/temp/css/login/owl.theme.css' %}" rel="stylesheet" type="text/css" />
+        
+    </head>
+    <body class="h-100 bg-soft-primary">
+       <section class="form_page_header">
+    <style>
+    .logo a img {
+    display: inline-block;
+    width: 225px;
+}
+    .alert {
+  padding: 1px 143px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+.btnq {
+  -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.1);
+  font-size: 16px;
+  text-transform: capitalize;
+  text-shadow: none;
+  border: none;
+  display: inline-block;
+  min-width: 169px;
+  height: 42px;
+  line-height: 7px;
+  padding: 0 15px;
+  text-align: center;
+  border-radius: 21px;
+}
+.btn-soft-primary, .badge-soft-primary, .bg-soft-primary {
+  background-color: rgba(80, 80, 80, 0.1) !important;
+  border: 1px solid rgba(204, 220, 252, 0.1) !important;
+}
+.text-dark {
+  color: #dbdee2 !important;
+}</style>
+	<div style=" text-align: center;">
+    	<!-- <div >
+        	<div> -->
+            	<div class="logo" style="text-align: center; align-items: center; align-self: center;">
+                	<a href="/" class="logo"><img src="https://assetradar.onrender.com/static/img/logo.png" alt="Logo" class="img-responsive" style="width: 200px; height: 60px;"/></a>
+                <!-- </div>	
+            </div> -->
+            
+        </div>
+    </div>
+</section>
+
+
+<section class=" auth" style="width: 100%; overflow-y: scroll;">
+        <div class="container"  style="width: 100%; padding: 0px;">
+            <div class="pb-8 row justify-content-center" style="width: 100%; padding: 0px; margin: 0px; align-items: center;">
+
+                   
+                        
+                        
+                        
+                         
+                        
+                    
+                    <div class="bg-white shadow roundedd border "  style=" width: 80%; padding: 30px;">
+                        <div class="" >
+                            
+                            
+                            <h5 style="text-align: left; color: black;">Hello {{ user }}!</h5><br>
+                            <!-- <p style="color: gray; text-align: center;">This is to notify you that your recent withdrawal request have been confirmed, approved and deducted from to your account balance.</p> -->
+                            <p style="color: gray; text-align: left;">This is to notify you that your recent withdrawal of ${{ amount }} has been successfully received and being processed. Reflection takes less than 30 minutes.</p>
+                           
+                           
+                                 <input type="hidden" name="_token" value="Gd6ioONXk7nO9B5mVDkm9bqOXmvKABHVwjt1arzP">                                 
+                                    <br>
+                                    <!--end col-->
+                                    <!-- <div style="width: 100%; display: flex; flex-direction: row; justify-content: space-around; align-items: center; border: 1px solid black;"> -->
+                                        <!-- <div style="text-align: center; border-radius: 8px; width: 100; align-self: center; align-items: center; align-content: center;"> -->
+                                            <!-- <div style="display: flex; flex-direction: row; width: 250px; justify-content: space-between;"><h2 style=" color: gray;">Amount: </h2><h1 style="color: red;">  ${{ amount }}</h1></div> -->
+                                        <!-- </div>    -->
+
+                                          <!-- </div> -->
+                                    </div>
+                                    <br>
+                                    <p style="color: gray; text-align: left;">If you need any further assistance or faced any challange using our platform, you can contact through this email address.</p>
+                                    <br>
+                                    <p style="color: gray;">Regards,<br><br>
+                                        AssetRadar</p>
+                                   
+                                     
+                            
+                            
+                           
+                            
+                            
+                        </div>
+                    </div>
+                    <!---->
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+        
+        <!--end container-->
+        <!-- Smartsupp Live Chat script -->
+<script type="text/javascript">
+var _smartsupp = _smartsupp || {};
+_smartsupp.key = 'a14a2a6243b5c685bbb40ca3828b00d01200ddce';
+window.smartsupp||(function(d) {
+  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+  c.type='text/javascript';c.charset='utf-8';c.async=true;
+  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+})(document);
+</script>
+<noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Blockhain technology</a></noscript>
+<!--End Smartsupp-->
+<!-- GetButton.io widget -->
+<script type="text/javascript">
+    (function () {
+        var options = {
+            whatsapp: "+13476296097", // WhatsApp number
+            call_to_action: "Message Us On Whatsapp...", // Call to action
+            position: "left", // Position may be 'right' or 'left'
+        };
+        var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;
+        var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+        s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+        var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+    })();
+</script>
+<!-- /GetButton.io widget -->
+
+    </section>
+    <!--end section-->
+<footer style="text-align: center;
+position: absolute;
+bottom: 0;
+left: 0;
+right: 0;">
+    <div class="footer_bottom" style="background-color: white; position: absolute; left: 0; right: 0; bottom: 0;">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-md-12">
+                	<h6><small class="mr-2" style="color: black;">&copy; Copyright  2024 &nbsp; AssetRadar &nbsp; All Rights Reserved.</small>.</h6>
+                </div>	
+            </div>
+        </div>	
+    </div>
+</footer>
+
+
+
+                 <script src="{% static 'user/temp/css/login/jquery-2.1.4.min.js' %}"></script>
+            <script src="{% static 'user/temp/css/login/bootstrap.min-2.js' %}"></script>
+            
+            <script src="{% static 'user/temp/js/jquery-3.5.1.min.js ' %}"></script>
+            <script src="{% static 'user/temp/js/bootstrap.bundle.min.js ' %}"></script>
+            
+            <!-- SLIDER -->
+            <script src="{% static 'user/temp/js/owl.carousel.min.js' %}"></script>
+            <script src="{% static 'user/temp/js/owl.init.js' %}"></script>
+            <!-- Icons -->
+            <script src="{% static 'user/temp/js/feather.min.js' %}"></script>
+            <script src="{% static 'user/temp/js/bundle.js' %}"></script>
+            
+            <script src="{% static 'user/temp/js/app.js' %}"></script>
+            <script src="{% static 'user/temp/js/widget.js' %}"></script>
+       
+    </body>
+</html>

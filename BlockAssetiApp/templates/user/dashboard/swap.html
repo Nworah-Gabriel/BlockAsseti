@@ -1,0 +1,167 @@
+{% load static %} {% include 'user/dashboard/__header.html' %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="popup6" class="popup">
+      <div class="popup-content">
+        <span class="close" id="closePopup6" style="width: 50px">&times;</span>
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+          "
+        >
+          <form method="POST" id="submitpaymentform">
+            {% csrf_token %}
+            <input type="hidden" name="_token" value="Bitcoin" />
+            <div class="row">
+              <div class="mb-4 col-md-12">
+                <h5 class="card-title text-dark">Enter Amount</h5>
+                <br />
+                <input
+                  class="form-control text-dark bg-white"
+                  placeholder="Enter Amount"
+                  min="100"
+                  type="number"
+                  name="amount"
+                  required
+                />
+              </div>
+              <br />
+              <div
+                style="
+                  display: flex;
+                  flex-direction: row;
+                  justify-content: space-around;
+                  align-items: center;
+                  width: 100%;
+                "
+              >
+                <img
+                  src="{% static 'img/bar-codes/ltc.jpeg' %}"
+                  style="height: 200px; width: 200px"
+                />
+              </div>
+              <div class="mb-4 col-md-12">
+                <input
+                  type="hidden"
+                  name="payment_method"
+                  id="paymethod"
+                  value="Transfer"
+                />
+              </div>
+            </div>
+            <div class="mb-3 input-group">
+              <input
+                type="text"
+                class="form-control myInput readonly text-dark bg-light"
+                value="ltc1qyxf48d6v7dtcpqq3vyht9qwmjs766gj4zc5v3s"
+                id="myInput6"
+                readonly
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-outline-secondary"
+                  onclick="myFunction6()"
+                  type="button"
+                  id="button-addon2"
+                >
+                  <i class="fas fa-copy"></i>
+                </button>
+              </div>
+            </div>
+            <br />
+
+            <div class="swap-tool">
+              <div class="swap-header">
+                <h3>Swap</h3>
+                <p>Trade tokens in an instant</p>
+                <div class="tool-ico">
+                  <a
+                    href="javascript:void(0);"
+                    data-toggle="modal"
+                    data-target="#recent-transactions"
+                    ><i class="fas fa-history"></i
+                  ></a>
+                  <a
+                    href="javascript:void(0);"
+                    data-toggle="modal"
+                    data-target="#setting-popup"
+                    ><i class="fas fa-cog"></i
+                  ></a>
+                </div>
+              </div>
+              <div class="swap-body">
+                <div class="swap-form">
+                  <div class="swap-input-box">
+                    <label>Swap From</label>
+                    <div class="swap-input-main">
+                      <div class="swap-box">
+                        <div class="dropdown">
+                          <button
+                            class="dropdown-select"
+                            type="button"
+                            data-toggle="modal"
+                            data-target="#select-token-popup"
+                          >
+                            <img src="assets/images/coin/eth.png" alt="" /> ETH
+                          </button>
+                        </div>
+                      </div>
+                      <input
+                        class="swap-input"
+                        type="number"
+                        name="balance"
+                        value="0.00"
+                      />
+                      <span class="swap-balance">Balance : 0.00</span>
+                    </div>
+                  </div>
+                  <div class="swap-icon">
+                    <img src="assets/images/swap-ico.png" alt="" />
+                  </div>
+                  <div class="swap-input-box">
+                    <label>Swap To</label>
+                    <div class="swap-input-main">
+                      <div class="swap-box">
+                        <div class="dropdown">
+                          <button
+                            class="dropdown-select"
+                            type="button"
+                            data-toggle="modal"
+                            data-target="#select-token-popup"
+                          >
+                            <img src="assets/images/coin/bnb.png" alt="" /> BNB
+                          </button>
+                        </div>
+                      </div>
+                      <input
+                        class="swap-input"
+                        type="number"
+                        name="balance"
+                        value="0.00"
+                      />
+                      <span class="swap-balance">Balance : 0.00</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <input
+                type="submit"
+                class="px-5 btn btn-primary btn-lg"
+                value="Procced to Payment"
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
