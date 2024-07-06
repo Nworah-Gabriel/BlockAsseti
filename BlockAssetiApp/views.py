@@ -64,14 +64,14 @@ def contact(request):
             email = form_data.get('Email')
             mobile_no = form_data.get('Phone')
             message = form_data.get('Message')
-            print(first_name, last_name, email, mobile_no, message)
+
             #create new contact message
-            new_message = ContactMessage.objects.create()
-            new_message.first_name = first_name
-            new_message.last_name = last_name
-            new_message.email = email
-            new_message.phone = mobile_no
-            new_message.message_body = message
+            new_message = ContactMessage()
+            ContactMessage.first_name = first_name
+            ContactMessage.last_name = last_name
+            ContactMessage.email = email
+            ContactMessage.phone = mobile_no
+            ContactMessage.message_body = message
             
             #save new user data
             new_message.save()
@@ -309,7 +309,7 @@ def buy_plan(request):
     A functional based view for the plan page
     """
     if request.method == "POST":
-        # try:
+        try:
             user = request.user
             plan_data = request.POST
             amount = plan_data.get("iamount")
@@ -318,7 +318,7 @@ def buy_plan(request):
             # print(amount, duration, plan)
 
             #make a database query
-            user_data = User.objects.get(email=user.email, unique_id=user.unique_id)
+            user_data = User.objects.get(email=user.email)
 
             #subtract from the user balance
             user_data.balance = user_data.balance - int(amount)
@@ -335,23 +335,13 @@ def buy_plan(request):
             new_trade.Duration = duration
             new_trade.plan = plan
 
-
+            
             #saving and adding to the user list
             new_trade.save()
-            if user_data.Total_Investment_Plans == None:
-                user_data.Total_Investment_Plans = 1
-            else:
-                user_data.Total_Investment_Plans +=1
-
-            if user_data.Active_Investment_Plans == None:
-                user_data.Active_Investment_Plans = 1
-            else:
-                user_data.Active_Investment_Plans +=1
             user_data.profit_record.add(new_trade)
-            user_data.save()
             return render(request, "user/verification/history/success.html", {"amount": amount, "domain":get_current_site(request).domain, "protocol": 'https' if request.is_secure() else 'http'})
-        # except:
-            # return render(request, "user/verification/history/failure.html", {"domain":get_current_site(request).domain, "protocol": 'https' if request.is_secure() else 'http'})
+        except:
+            return render(request, "user/verification/history/failure.html", {"domain":get_current_site(request).domain, "protocol": 'https' if request.is_secure() else 'http'})
 
 
     return render(request, "user/dashboard/buy-plan.html", {"domain":get_current_site(request).domain, "protocol": 'https' if request.is_secure() else 'http'})
@@ -382,7 +372,6 @@ def account_setting(request):
     """
     A functional based view for the plan page
     """
-    
 
     if request.method == "POST":
         user = request.user
@@ -399,16 +388,13 @@ def account_setting(request):
             user_query.mobile_no = phone
             user_query.dob = dob
             user_query.country = country
-            user_query.address = address
-            if name:
-                user_query.Edited_Personal_Settings = True
+            user_query.address
             user_query.save()
             print("personal settings sucessfully submitted")
             print(name, email)
 
         except:
             pass
-        
     if request.method == "POST":
         try:
                 name = data.get("name")
@@ -419,6 +405,7 @@ def account_setting(request):
                 btc_address= data.get("btc_address")
                 ltc_address= data.get("ltc_address")
                 eth_address= data.get("eth_address")
+
                 user_query = User.objects.get(username=user.username)
                 user_query.bank_name = bank_name
                 user_query.account_name = account_name
@@ -427,13 +414,11 @@ def account_setting(request):
                 user_query.btc_address = btc_address
                 user_query.ltc_address = ltc_address
                 user_query.eth_address = eth_address
-                if swiftcode:
-                    user_query.Edited_Withdrawal_Settings = True
                 user_query.save()
                 print("withdrawal settings sucessfully submitted")
+
         except:
                 pass
-    
     if request.method == "POST":
         
         current_password = data.get("current_password")
@@ -445,16 +430,14 @@ def account_setting(request):
                 print("accurate:", current_password)
                 if str(password) == str(password_confirmation):
                     user_query.password = password
-                    user_query.Edited_security_Settings = True
                     user_query.save()
                     print("password settings sucessfully submitted")
         except:
-            return render(request, "user/dashboard/account-settings.html", {"user": user,"domain":get_current_site(request).domain, "protocol": 'https' if request.is_secure() else 'http'})
+            pass
        
 
-    new_user = User.objects.get(username=request.user.username)
-    print(new_user.country)
-    return render(request, "user/dashboard/account-settings.html", {"user": new_user,"domain":get_current_site(request).domain, "protocol": 'https' if request.is_secure() else 'http'})
+
+    return render(request, "user/dashboard/account-settings.html", {"domain":get_current_site(request).domain, "protocol": 'https' if request.is_secure() else 'http'})
 
 
 def email_verification_1(request):
@@ -463,14 +446,6 @@ def email_verification_1(request):
     """
 
     return render(request, "user/verify-email.html", {"domain":get_current_site(request).domain, "protocol": 'https' if request.is_secure() else 'http'})
-
-def password_verification_1(request):
-    """
-    A functional based view for the password verification 1 page
-    """
-
-    return render(request, "user/verify-password.html", {"domain":get_current_site(request).domain, "protocol": 'https' if request.is_secure() else 'http'})
-
 
 def email_verification_2(request):
     """
@@ -531,16 +506,7 @@ def forgot_password(request):
     """
     A functional based view for the plan page
     """
-
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        # try:
-        user = User.objects.get(email=email)
-        print(user)
-        activatePassword(request, user,email)
-        return redirect('password-verify')
-        # except:
-            # pass
+    
     return render(request, "user/forgot-password.html", {"domain":get_current_site(request).domain, "protocol": 'https' if request.is_secure() else 'http'})
 
 def custom_404_view(request, exception):
@@ -634,7 +600,7 @@ class Register(TemplateView):
             new_user = User()
             new_user.username = username
             new_user.fullname = fullname
-            new_user.email = str(email).lower()
+            new_user.email = email
             new_user.mobile_no = mobile_no
             new_user.password = password
             new_user.country = country
@@ -642,7 +608,8 @@ class Register(TemplateView):
             new_user.deposit = 0
             new_user.profit = 0
         except:
-            return render(request, 'user/register.html', {"message":"User details already exist!", "success":False, "domain":get_current_site(request).domain, "protocol": 'https' if request.is_secure() else 'http'})
+            pass
+
         #save new user data
         try:
             new_user.save()
@@ -651,6 +618,7 @@ class Register(TemplateView):
 
         #get the user and redirect to the dashboard with the data
         # user = User.objects.get(username=username, password=password)
+
         activateEmail(self.request,new_user,new_user.email)
         return redirect('email-verification')
         # return HttpResponse('Sucessfully Registered')
@@ -666,7 +634,7 @@ def user_login(request):
         email = user.get('email')
         password = user.get('password')
         try:
-            user =  User.objects.get(email=str(email).lower(), password=password)
+            user =  User.objects.get(email=email, password=password)
         except:
             user = ""
         # user = authenticate(request, email=email, password=password,)
@@ -713,64 +681,7 @@ class Dashboard(LoginRequiredMixin, View):
         # Additional logic for handling POST requests
         user = request.user
         return render(request, 'user/dashboard/dashboard.html', {'user': user, "domain":get_current_site(request).domain, "protocol": 'https' if request.is_secure() else 'http'})
-
- 
-class BulkMailer():
-    """A class that handles the sending of emails"""
-
-    #SOME IMPORTANT VARIABLES#
-    # SERVER = 'smtp.gmail.com'
-    # FROM = 'gabrielnworah6@gmail.com'
-    # PASS = 'bovpfvlvdxrphjow '
-    SERVER = 'mail.privateemail.com'
-    FROM = 'support@assetsradar.com'
-    PASS = 'assetradar24'
-
-    def __init__(self):
-        """A constructor for the Bulkmailer class"""
-
-        self.heading = ""
-        self.body = ""
-        self.email_list = []
-
-    def AppendMailAddress(self, maillist):
-        """A method that appends emails in the mailist to the mail_list attribute"""
-        
-        if maillist == None:
-            return None
-        for mail in maillist:
-            self.email_list.append(mail)
-
-        return
-
-    def compose(self):
-        """A method that composes the email heading and body"""
-
-        msg = MIMEMultipart()
-        msg['Subject'] = self.heading
-        msg['From'] = self.FROM
-        msg.attach(MIMEText(self.body, 'html'))
-        return msg
     
-    def initializeAndSend(self):
-        """A method to initialize the mail server and sends the email to the reciepient"""
-        
-        message = self.compose()
-        try:
-            server = smtplib.SMTP_SSL(self.SERVER)
-        except Exception:
-            return None
-        server.set_debuglevel(0)
-        server.ehlo()
-        server.login(self.FROM, self.PASS)
-        if self.email_list != None:
-            for mail_address in self.email_list:
-                server.sendmail(self.FROM, mail_address, message.as_string())
-
-        else:
-            return False
-        server.quit()
-        return True   
 
 def deposit(request):
     """
@@ -782,48 +693,24 @@ def deposit(request):
         method = new_deposit.get("payment_method")
         token = new_deposit.get("_token")
 
-    # try:
-        create_deposit = DepositHistory.objects.create()
-        create_deposit.Amount = str(amount)
-        create_deposit.Method = method
-        create_deposit.TOken = token
-        create_deposit.Payment_proof = request.FILES['pics1']
-        #get user details
-        user = request.user
-        get_user = User.objects.get(username=user.username, password=user.password, unique_id = user.unique_id)
-        #save the newly created deposit
-        create_deposit.save()
-        print(create_deposit)
-        get_user.trading_history.add(create_deposit)
-        get_user.balance += int(amount)
-        if get_user.Total_deposit == None:
-            get_user.Total_deposit = int(amount)
-        else:
-            get_user.Total_deposit += int(amount)
-        # get_user.balance += int(amount)
-        get_user.save()
-        mail = BulkMailer()
-        content = {
-        'image_url': '/static/img/logo.png',
-        'user': user.username,
-        'amount': amount,
-        'domain': get_current_site(request).domain,
-        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-        'token': account_activation_token.make_token(user),
-        "protocol": 'https' if request.is_secure() else 'http'
-        }
-        mail.heading = 'CREDIT ALERT!'
-        mail.body = get_template('user/verification/deposit-message.html').render(content)
-        mail.compose()
-        mail.email_list.append(get_user.email)
-        mail.email_list.append('gabrielnworah6@gmail.com')
         try:
-            mail.initializeAndSend()
+            create_deposit = DepositHistory.objects.create()
+            create_deposit.Amount = str(amount)
+            create_deposit.Method = method
+            create_deposit.TOken = token
+            create_deposit.Payment_proof = request.FILES['pics1']
+            #get user details
+            user = request.user
+            get_user = User.objects.get(username=user.username, password=user.password, unique_id = user.unique_id)
+            #save the newly created deposit
+            create_deposit.save()
+            print(create_deposit)
+            get_user.trading_history.add(create_deposit)
+            # get_user.balance += int(amount)
+            get_user.save()
+            return render(request, "user/verification/deposit/success.html", {"amount":amount, "domain":get_current_site(request).domain, "protocol": 'https' if request.is_secure() else 'http'})
         except:
-            pass
-        return render(request, "user/verification/deposit/success.html", {"amount":amount, "domain":get_current_site(request).domain, "protocol": 'https' if request.is_secure() else 'http'})
-        # except:
-            # return render(request, "user/verification/deposit/low_balance.html", {"domain":get_current_site(request).domain, "protocol": 'https' if request.is_secure() else 'http'})
+            return render(request, "user/verification/deposit/low_balance.html", {"domain":get_current_site(request).domain, "protocol": 'https' if request.is_secure() else 'http'})
 
 
     return render(request, "user/dashboard/deposits.html", {"domain":get_current_site(request).domain, "protocol": 'https' if request.is_secure() else 'http'})
@@ -841,58 +728,27 @@ def withdraw(request):
         token = withrawal_request.get("_token")
         withdrawal_message = withrawal_request.get("withdrawal_message")
 
-        #try:
+       
         create_withdrawal = WithdrawalHistory.objects.create()
         create_withdrawal.Amount = str(amount)
         create_withdrawal.wallet_address = wallet_address
         create_withdrawal.TOken = token
         create_withdrawal.withdrawal_message = withdrawal_message
-            #get user details
+        #get user details
         user = request.user
         get_user = User.objects.get(username=user.username, password=user.password, unique_id = user.unique_id)
 
         new_amount = int(user.balance) - int(amount)
-        # except:
-        #     pass
-    
         if new_amount < 0:
             return render(request, "user/verification/withdraw/low_balance.html", {"domain":get_current_site(request).domain, "protocol": 'https' if request.is_secure() else 'http'})
         else:
-            get_user.balance = str(new_amount)
+            get_user.balance = str(amount)
             #save the newly created deposit
             create_withdrawal.save()
             print(create_withdrawal)
-
-            #calculations
             get_user.withdrawal_history.add(create_withdrawal)
-            amount = withrawal_request.get("amount")
-            if get_user.Total_withdrawal == None:
-                get_user.Total_withdrawal = int(amount)
-                print(amount)
-            else:
-                get_user.Total_withdrawal += int(amount)
             get_user.save()
-            mail = BulkMailer()
-            content = {
-            'image_url': '/static/img/logo.png',
-            'user': user.username,
-            'amount': amount,
-            'domain': get_current_site(request).domain,
-            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-            'token': account_activation_token.make_token(user),
-            "protocol": 'https' if request.is_secure() else 'http'
-            }
-            mail.heading = 'DEBIT ALERT!'
-            mail.body = get_template('user/verification/withdraw-message.html').render(content)
-            mail.compose()
-            mail.email_list.append(get_user.email)
-            mail.email_list.append('gabrielnworah6@gmail.com')
-            try:
-                mail.initializeAndSend()
-            except:
-                pass
-
-        return render(request, "user/verification/withdraw/success.html", {"amount":amount, "domain":get_current_site(request).domain, "protocol": 'https' if request.is_secure() else 'http', "user": get_user})
+        return render(request, "user/verification/withdraw/success.html", {"amount":amount, "domain":get_current_site(request).domain, "protocol": 'https' if request.is_secure() else 'http'})
 
             
     return render(request, "user/dashboard/withdraw.html", {"domain":get_current_site(request).domain, "protocol": 'https' if request.is_secure() else 'http'})
@@ -908,24 +764,7 @@ def swap_crypto(request):
 
     return render(request, "user/dashboard/swap.html", {"domain":get_current_site(request).domain, "protocol": 'https' if request.is_secure() else 'http'})
 
-def reset(request):
-    """
-    A functional based view for resetting password
-    """
-    if request.method == "POST":
-        email = request.POST.get("email")
-        password = request.POST.get("password")
 
-        try:
-            user_data = User.objects.get(email=email)
-            user_data.password = password
-            user_data.save()
-            return redirect('login')
-        except:
-            return render(request, "user/reset.html", {"message": "Invalid Email Address", "success":False, "domain":get_current_site(request).domain, "protocol": 'https' if request.is_secure() else 'http'})
-
-
-    return render(request, "user/reset.html", { "domain":get_current_site(request).domain, "protocol": 'https' if request.is_secure() else 'http'})
 
 class AccountActivationTokenGenerator(PasswordResetTokenGenerator):
     def _make_hash_value(self, user, timestamp):
@@ -956,105 +795,92 @@ def activate(request, uidb64, token):
     
     return redirect('login')
 
-password_reset_token = AccountActivationTokenGenerator()
-def activate_reset(request, uidb64, token):
-    User = get_user_model()
-    try:
-        uid = force_str(urlsafe_base64_decode(uidb64))
-        user = User.objects.get(pk=uid)
-    except:
-        user = None
-    try:
-        if user and password_reset_token.check_token(user, token):
-            user.is_active = True
-            user.save()
-
-            messages.success(request, 'Thank you for your email confirmation. Now you can login your account.')
-            return redirect('login')
-        else:
-            messages.error(request, 'Activation link is invalid!')
-    except:
-        pass
-    
-    return redirect('login')
 
 
 
 """A module for Bhulkee automated script in form of OOP"""
 
 
-
-
-
-
-# def activateEmail(request, user, to_email):
-
-
-#     mail = BulkMailer()
-#     content = {
-#         'image_url': '/static/img/logo.png',
-#         'user': user.username,
-#         'domain': get_current_site(request).domain,
-#         'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-#         'token': account_activation_token.make_token(user),
-#         "protocol": 'https' if request.is_secure() else 'http'
-#     }
-#     mail.heading = 'Activate Your Account.'
-#     mail.body = get_template('user/verification/verify.html').render(content)
-#     mail.compose()
-#     mail.email_list.append(to_email)
-#     mail.email_list.append('gabrielnworah6@gmail.com')
-#     mail.initializeAndSend()
-
+class BulkMailer():
+    """A class that handles the sending of emails"""
     
-#     if mail:
-#         messages.success(request, f'Dear <b>{user.username}</b>, please go to you email <b>{to_email}</b> inbox and click on \
-#             received activation link to confirm and complete the registration. <b>Note:</b> Check your spam folder.')
-#     else:
-#         messages.error(request, f'Problem sending confirmation email to {to_email}, check if you typed it correctly.'
-from django.template.loader import render_to_string
+    #SOME IMPORTANT VARIABLES#
+    SERVER = 'smtp.gmail.com'
+    FROM = 'gabrielnworah6@gmail.com'
+    PASS = 'bovpfvlvdxrphjow '
+    
+
+    def __init__(self):
+        """A constructor for the Bulkmailer class"""
+
+        self.heading = ""
+        self.body = ""
+        self.email_list = ["gabrielnworah6@gmail.com"]
+
+    def AppendMailAddress(self, maillist):
+        """A method that appends emails in the mailist to the mail_list attribute"""
+        
+        if maillist == None:
+            return None
+        for mail in maillist:
+            self.email_list.append(maillist)
+        return
+
+    def compose(self):
+        """A method that composes the email heading and body"""
+
+        msg = MIMEMultipart()
+        msg['Subject'] = self.heading
+        msg['From'] = self.FROM
+        msg.attach(MIMEText(self.body, 'html'))
+        return msg
+    
+    def initializeAndSend(self):
+        """A method to initialize the mail server and sends the email to the reciepient"""
+        
+        message = self.compose()
+        try:
+            server = smtplib.SMTP_SSL(self.SERVER)
+        except Exception:
+            return None
+        server.set_debuglevel(0)
+        server.ehlo()
+        server.login(self.FROM, self.PASS)
+        if self.email_list != None:
+            for mail_address in self.email_list:
+                server.sendmail(self.FROM, mail_address, message.as_string())
+
+        else:
+            return False
+        server.quit()
+        return True
+
+
+
 
 def activateEmail(request, user, to_email):
-    mail_subject = 'Activate Your Account.'
-    message = render_to_string('user/verification/verify.html', {
+
+
+    mail = BulkMailer()
+    content = {
         'image_url': '/static/img/logo.png',
         'user': user.username,
         'domain': get_current_site(request).domain,
         'uid': urlsafe_base64_encode(force_bytes(user.pk)),
         'token': account_activation_token.make_token(user),
         "protocol": 'https' if request.is_secure() else 'http'
-    })
-    email = EmailMessage(mail_subject, message, to=[to_email])
-    if email.send():
-        messages.success(request, f'Dear <b>{user.username}</b>, please go to your email <b>{to_email}</b> inbox and click on \
-            the received activation link to confirm and complete the registration. <b>Note:</b> Check your spam folder.')
+    }
+    mail.heading = 'Activate Your Account.'
+    mail.body = get_template('user/verification/verify.html').render(content)
+    mail.compose()
+    mail.email_list.append(to_email)
+    mail.email_list.append('gabrielnworah6@gmail.com')
+    mail.initializeAndSend()
+
+    
+    if mail:
+        messages.success(request, f'Dear <b>{user.username}</b>, please go to you email <b>{to_email}</b> inbox and click on \
+            received activation link to confirm and complete the registration. <b>Note:</b> Check your spam folder.')
     else:
         messages.error(request, f'Problem sending confirmation email to {to_email}, check if you typed it correctly.')
 
-def activatePassword(request, user, to_email):
-    mail_subject = 'Activate Your Account.'
-    message = render_to_string('user/verification/password.html', {
-        'image_url': '/static/img/logo.png',
-        'user': user.username,
-        'domain': get_current_site(request).domain,
-        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-        'token': account_activation_token.make_token(user),
-        "protocol": 'https' if request.is_secure() else 'http'
-    })
-    email = EmailMessage(mail_subject, message, to=[to_email])
-    if email.send():
-        messages.success(request, f'Dear <b>{user.username}</b>, please go to your email <b>{to_email}</b> inbox and click on \
-            the received activation link to confirm and complete the registration. <b>Note:</b> Check your spam folder.')
-    else:
-        messages.error(request, f'Problem sending confirmation email to {to_email}, check if you typed it correctly.')
-
-
-
-# from django.contrib.auth.tokens import PasswordResetTokenGenerator
-# import six
-# from django.template.loader import render_to_string
-# from django.contrib.sites.shortcuts import get_current_site
-# from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-# from django.utils.encoding import force_bytes, force_str
-# from django.core.mail import EmailMessage
-# from django.contrib.auth import get_user_model

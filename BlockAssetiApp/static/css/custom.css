@@ -73,7 +73,7 @@ a {
 }
 
 .price {
-  background: #dd00dd;
+  background: #3480eb;
   color: #fff;
   font-size: 2em;
   font-weight: 600;
@@ -109,8 +109,8 @@ a {
 }
 
 .btn:hover {
-  background: #dd00dd;
-  border: 1px solid #dd00dd;
+  background: #3480eb;
+  border: 1px solid #3480eb;
   color: #fff !important;
 }
 

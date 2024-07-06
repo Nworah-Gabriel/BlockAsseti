@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+AUTH_USER_MODEL = "BlockAssetiApp.User"
 ROOT_URLCONF = 'BlockAsseti.urls'
 
 TEMPLATES = [
@@ -124,7 +125,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'AsstesradarApp/static'),
+    os.path.join(BASE_DIR, 'BlockAssetiApp/static'),
     '/var/www/static/',
 ]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

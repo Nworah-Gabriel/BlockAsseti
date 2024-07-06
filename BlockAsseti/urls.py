@@ -70,12 +70,10 @@ urlpatterns = [
     path("referuser", views.refer_user),
     path("asset-balance", views.asset_balance),
     path("buy-plan", views.buy_plan),
-     path("buy_plan", views.buy_plan),
     path("accounthistory", views.account_history),
     path("account_setting", views.account_setting),
     path("email-verification", views.email_verification_1, name='email-verification'),
     path("email-verify", views.email_verification_2, name='email-verify'),
-    path("password-verify", views.password_verification_1, name='password-verify'),
     path("forgot-password", views.forgot_password, name='forgot-password'),
     path("id-verification", views.id_verification, name='id-verification'),
     path("verify_account", views.id_verification, name='id-verification'),
@@ -84,10 +82,8 @@ urlpatterns = [
     path("withdrawal", views.withdraw, name='withdrawal'),
     path("verification-failed", views.id_verification_failure, name='failed'),
     path('activate/<uidb64>/<token>', views.activate, name='activate'),
-     path('reset/<uidb64>/<token>', views.reset, name='reset'),
     path('ref/<str:ref_email>/<str:ref_username>', views.ReferralRegister.as_view(), name='ref'),
     path('swap-crypto', views.swap_crypto, name='swap'),
-    path('reset-password', views.reset, name='reset'),
 
 
 
