@@ -28,14 +28,14 @@
 								<!-- Price -->
 								<div class="price-tag">
 									<span class="symbol bg-light">$</span>
-									<span class="amount bg-light">3000</span>
+									<span class="amount bg-light">500</span>
 								</div>
 								<!-- Features -->
 								<div class="pricing-features">
-									<div class="feature bg-light">Minimum Possible Deposit:<span class="bg-light">$3000</span></div>
-									<div class="feature bg-light">Maximum Possible Deposit:<span  class="bg-light">$4,999</span></div>
-									<div class="feature bg-light">Minimum Return:<span class="bg-light">$3,570</span></div>
-									<div class="feature bg-light">Maximum Return:<span class="bg-light">$5,200</span></div>
+									<div class="feature bg-light">Minimum Possible Deposit:<span class="bg-light">$500</span></div>
+									<div class="feature bg-light">Maximum Possible Deposit:<span  class="bg-light">$999</span></div>
+									<div class="feature bg-light">Minimum Return:<span class="bg-light">$70</span></div>
+									<div class="feature bg-light">Maximum Return:<span class="bg-light">$200</span></div>
 									<div class="feature bg-light">Gift Bonus:<span class="bg-light">$73</span></div>
 									<div class="feature bg-light">Duration:<span class="bg-light">2 Weeks</span></div>
 								</div> 
@@ -44,7 +44,7 @@
 										<form method="POST">
 											{% csrf_token %}
 											<h5 class="bg-light">Amount to invest: ($3000 default)</h5>
-											<input type="number" min="3000" max="4999" name="iamount" placeholder="$300" class="form-control bg-light bg-light" required> <br>
+											<input type="number" min="500" max="999" name="iamount" placeholder="$500" class="form-control bg-light bg-light" required> <br>
 											<input type="hidden" name="duration" value="2 Weeks">
 											<input type="hidden" name="id" value="6">
 											<input type="hidden" name="plan" value="Starter Plan">
@@ -62,15 +62,15 @@
 								<!-- Price -->
 								<div class="price-tag">
 									<span class="symbol bg-light">$</span>
-									<span class="amount bg-light">10,000</span>
+									<span class="amount bg-light">1,000</span>
 								</div>
 								<!-- Features -->
 								<div class="pricing-features">
-									<div class="feature bg-light">Minimum Possible Deposit:<span class="bg-light">$10,000</span></div>
-									<div class="feature bg-light">Maximum Possible Deposit:<span  class="bg-light">$99,000</span></div>
-									<div class="feature bg-light">Minimum Return:<span class="bg-light">$30,950</span></div>
-									<div class="feature bg-light">Maximum Return:<span class="bg-light">$61,450</span></div>
-									<div class="feature bg-light">Gift Bonus:<span class="bg-light">$3000</span></div>
+									<div class="feature bg-light">Minimum Possible Deposit:<span class="bg-light">$1,000</span></div>
+									<div class="feature bg-light">Maximum Possible Deposit:<span  class="bg-light">$2,999</span></div>
+									<div class="feature bg-light">Minimum Return:<span class="bg-light">$3,950</span></div>
+									<div class="feature bg-light">Maximum Return:<span class="bg-light">$1,450</span></div>
+									<div class="feature bg-light">Gift Bonus:<span class="bg-light">$300</span></div>
 									<div class="feature bg-light">Duration:<span class="bg-light">4 weeks</span></div>
 								</div> 
 																	<!-- Button -->
@@ -78,7 +78,7 @@
 										<form method="POST">
 											{% csrf_token %}
 											<h5 class="bg-light">Amount to invest: ($10,000 default)</h5>
-											<input type="number" min="10000" max="99000" name="iamount" placeholder="$10000" class="form-control bg-light bg-light" required> <br>
+											<input type="number" min="1000" max="2999" name="iamount" placeholder="$1000" class="form-control bg-light bg-light" required> <br>
 											<input type="hidden" name="duration" value="4 weeks">
 											<input type="hidden" name="id" value="7">
 											<input type="hidden" name="plan" value="Premium Plan">
@@ -96,12 +96,12 @@
 								<!-- Price -->
 								<div class="price-tag">
 									<span class="symbol bg-light">$</span>
-									<span class="amount bg-light">100,000</span>
+									<span class="amount bg-light">3,000</span>
 								</div>
 								<!-- Features -->
 								<div class="pricing-features">
-									<div class="feature bg-light">Minimum Possible Deposit:<span class="bg-light">$100,000</span></div>
-									<div class="feature bg-light">Maximum Possible Deposit:<span  class="bg-light">$490,000</span></div>
+									<div class="feature bg-light">Minimum Possible Deposit:<span class="bg-light">$3,000</span></div>
+									<div class="feature bg-light">Maximum Possible Deposit:<span  class="bg-light">$50,000</span></div>
 									<div class="feature bg-light">Minimum Return:<span class="bg-light">$50,200</span></div>
 									<div class="feature bg-light">Maximum Return:<span class="bg-light">$90,300</span></div>
 									<div class="feature bg-light">Gift Bonus:<span class="bg-light">$5000</span></div>
@@ -112,7 +112,7 @@
 										<form method="POST">
 											{% csrf_token %}
 											<h5 class="bg-light">Amount to invest: ($100,000 default)</h5>
-											<input type="number" min="100000" max="490000" name="iamount" placeholder="$100000" class="form-control bg-light bg-light" required> <br>
+											<input type="number" min="3000" max="490000" name="iamount" placeholder="$100000" class="form-control bg-light bg-light" required> <br>
 											<input type="hidden" name="duration" value="4 weeks">
 											<input type="hidden" name="id" value="8">
 											<input type="hidden" name="plan" value="Premium PLan">
@@ -188,7 +188,7 @@
         <!-- Smartsupp Live Chat script -->
 <script type="text/javascript">
 var _smartsupp = _smartsupp || {};
-_smartsupp.key = 'c3590ebc17c3b414637e9b1c05d8bb018e46fe08';
+_smartsupp.key = '2befb8db6a34190f444ebf01b32a3dcdf51dc6d7';
 window.smartsupp||(function(d) {
   var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
   s=d.getElementsByTagName('script')[0];c=d.createElement('script');
