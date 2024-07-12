@@ -1,15 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser, AbstractBaseUser
-from django.contrib.auth.models import AbstractUser, Group, Permission
 from uuid import uuid4
 from datetime import datetime
 # Create your models here.
+
 class User(AbstractUser):
     """
     A class model for storing the user's data
     """
-    
+
     
     fullname = models.CharField(max_length=200, default="Anonymous", null=True)
     mobile_no = models.CharField(max_length=100, default="09000000000", null=True)
@@ -46,28 +46,8 @@ class User(AbstractUser):
     Edited_Withdrawal_Settings = models.BooleanField(default=False)
     Edited_security_Settings = models.BooleanField(default=False)
 
-    groups = models.ManyToManyField(
-        Group,
-        related_name='blockassetiapp_user_set',  # Change this to avoid clash
-        blank=True,
-        help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.',
-        related_query_name='user',
-    )
-    user_permissions = models.ManyToManyField(
-        Permission,
-        related_name='blockassetiapp_user_permissions',  # Change this to avoid clash
-        blank=True,
-        help_text='Specific permissions for this user.',
-        related_query_name='user',
-    )
-
-    class Meta:
-        app_label = 'BlockAssetiApp'
-
     def __str__(self):
         return self.email
-
-
 
 class ContactMessage(models.Model):
     """
@@ -158,5 +138,4 @@ class WithdrawalHistory(models.Model):
         """
 
         return (f'{self.withdrawal_message}  {self.wallet_address}')
-
 

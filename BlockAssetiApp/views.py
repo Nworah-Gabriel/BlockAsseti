@@ -805,9 +805,9 @@ class BulkMailer():
     """A class that handles the sending of emails"""
     
     #SOME IMPORTANT VARIABLES#
-    SERVER = 'smtp.gmail.com'
-    FROM = 'gabrielnworah6@gmail.com'
-    PASS = 'bovpfvlvdxrphjow '
+    SERVER = 'mail.privateemail.com'
+    FROM = 'support@blockasseti.com'
+    PASS = 'blockasset'
     
 
     def __init__(self):
