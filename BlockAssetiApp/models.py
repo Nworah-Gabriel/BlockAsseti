@@ -47,7 +47,7 @@ class User(AbstractUser):
     Edited_security_Settings = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.email
+        return self.fullname
 
 class ContactMessage(models.Model):
     """
