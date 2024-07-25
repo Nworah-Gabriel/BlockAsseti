@@ -22,7 +22,7 @@ from django.conf import settings
 from django.views.generic import TemplateView
 from django.conf.urls import handler404
 
-handler404 = views.custom_404_view
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -90,7 +90,6 @@ urlpatterns = [
    
 
 ]
-
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
